@@ -1,3 +1,7 @@
+---
+title: Pretty Good Password Generator
+---
+
 
 <button onclick="gen()">Gen</button>
 <textarea id="password"></textarea>
