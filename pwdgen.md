@@ -52,7 +52,7 @@ title: Pretty Good Password Generator
 
 </script>
 
-<button onclick="gen(16, allChars)">Letters+Digits+Punctuation (16)</button>
-<button onclick="gen(8, allChars)">Letters+Digits+Punctuation (8)</button>
-<button onclick="gen(16, alnum)">Letters+Digits (16)</button>
+<button onclick="gen(16, allChars)">Generate (16)</button>
+<button onclick="gen(8, allChars)">Generate (8)</button>
+<button onclick="gen(16, alnum)">Generate Alphanumeric (16)</button>
 <textarea id="password" rows="1"></textarea>
