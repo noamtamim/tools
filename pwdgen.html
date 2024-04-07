@@ -30,10 +30,10 @@
     function gen(size, chars) {
       let pwd;
     
-      while (true) {if (window.CP.shouldStopExecution(0)) break;
+      while (true) {
         pwd = "";
         prevChar = null;
-        while (pwd.length < size) {if (window.CP.shouldStopExecution(1)) break;
+        while (pwd.length < size) {
           let c = randomChar(chars);
           if (c !== prevChar) {
             pwd += c;
