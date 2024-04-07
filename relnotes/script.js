@@ -1,10 +1,20 @@
 const converter = new showdown.Converter();
+const tagToSemverPattern = /^.*?(\d+)\.(\d+)\.(\d+).*?$/;
 
 function tagToNumber(tag) {
-  return (tag.startsWith('v') ? tag.slice(1) : tag)
-    .split('.')
-    .map(Number)
-    .reduce((acc, val, index) => acc + val * Math.pow(1000, 2 - index), 0);
+  // Regular expression to match semantic versioning pattern
+  const match = tag.match(tagToSemverPattern);
+
+  if (match) {
+    // Extract components from the matched groups
+    const major = parseInt(match[1]);
+    const minor = parseInt(match[2]);
+    const patch = parseInt(match[3]);
+    return major * 1000000 + minor * 1000 + patch;
+  } else {
+    // Return null if no match found
+    return null;
+  }
 }
 
 function collectReleaseNotes(repo, { renderMarkdown, page, fromTagNumber, toTagNumber }) {
@@ -17,15 +27,8 @@ function collectReleaseNotes(repo, { renderMarkdown, page, fromTagNumber, toTagN
         for (const release of releases) {
           const tagKey = tagToNumber(release.tag_name);
           if (release.tag_name.includes('-') || tagKey < fromTagNumber || tagKey > toTagNumber) {
-            console.log('skipping', { tag: release.tag_name, tagKey, fromTagNumber, toTagNumber });
             continue;
           }
-          console.log('not skipping', {
-            tag: release.tag_name,
-            tagKey,
-            fromTagNumber,
-            toTagNumber,
-          });
 
           div.innerHTML += '<hr>';
           div.innerHTML += `<h2><a href="${release.html_url}">${release.tag_name}</a></h2>`;
