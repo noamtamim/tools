@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Password Generator</title>
+</head>
+
+<body translate="no">
+  <p>
+    <button onclick="gen(16, allChars)">Generate (16)</button>
+    <button onclick="gen(8, allChars)">Generate (8)</button>
+    <button onclick="gen(16, alnum)">Generate Alphanumeric (16)</button>
+  </p>
+  <p>
+    <input type="text" id="password" size="50"></input>
+  </p>
+  
+  <script id="rendered-js" >
+    const alnum = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const punct = "!@#$%^&*-=+";
+    const allChars = alnum + punct;
+    
+    function randomChar(chars) {
+      let buf = new Uint8Array(1);
+      window.crypto.getRandomValues(buf);
+    
+      return chars[buf[0] % chars.length];
+    }
+    
+    function gen(size, chars) {
+      let pwd;
+    
+      while (true) {if (window.CP.shouldStopExecution(0)) break;
+        pwd = "";
+        prevChar = null;
+        while (pwd.length < size) {if (window.CP.shouldStopExecution(1)) break;
+          let c = randomChar(chars);
+          if (c !== prevChar) {
+            pwd += c;
+            prevChar = c;
+          }
+        }
+    
+        if (chars === alnum) {
+          if (/\d/.test(pwd) && /[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) {
+            break;
+          }
+        } else {
+          if (
+          /\d/.test(pwd) &&
+          /[A-Z]/.test(pwd) &&
+          /[a-z]/.test(pwd) &&
+          /[^\w]/.test(pwd))
+          {
+            break;
+          }
+        }
+      }
+    
+      const e = document.getElementById("password");
+      e.value = pwd;
+      e.select();
+    }
+  </script>
+</body>
+</html>
