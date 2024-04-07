@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
+      integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <h1>Release Notes Loader</h1>
+    <p>
+      <label for="owner">GitHub repository path as "owner/repo":</label>
+      <input id="repo-path" />
+    </p>
+
+    <p>
+      <label for="markdown">Render markdown:</label>
+      <input id="markdown" type="checkbox" checked />
+    </p>
+    <p>
+      <label for="from-tag">From tag:</label>
+      <input type="text" id="from-tag" />
+    </p>
+    <p>
+      <label for="to-tag">To tag:</label>
+      <input type="text" id="to-tag" />
+    </p>
+    <p>
+      <button id="start">Start</button>
+      <button id="select-all">Select content</button>
+    </p>
+
+    <div id="rel-notes"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
