@@ -1,6 +1,10 @@
 const converter = new showdown.Converter();
 const tagToSemverPattern = /^.*?(\d+)\.(\d+)\.(\d+).*?$/;
 
+function gebi(id) {
+  return document.getElementById(id);
+}
+
 function tagToNumber(tag) {
   // Regular expression to match semantic versioning pattern
   const match = tag.match(tagToSemverPattern);
@@ -18,10 +22,11 @@ function tagToNumber(tag) {
 }
 
 function collectReleaseNotes(repo, { renderMarkdown, page, fromTagNumber, toTagNumber }) {
-  const div = document.getElementById('rel-notes');
+  const div = gebi('rel-notes');
   fetch(`https://api.github.com/repos/${repo}/releases?page=${page}`)
     .then(response => response.json())
     .then(releases => {
+      gebi('select-all').disabled = false;
       if (releases.length) {
         // div.innerHTML += `<h1>Page ${page}</h1>`;
         for (const release of releases) {
@@ -49,15 +54,16 @@ function collectReleaseNotes(repo, { renderMarkdown, page, fromTagNumber, toTagN
 }
 
 function start() {
-  const fromTag = document.getElementById('from-tag').value;
-  const toTag = document.getElementById('to-tag').value;
+  const fromTag = gebi('from-tag').value;
+  const toTag = gebi('to-tag').value;
 
   const fromTagNumber = fromTag ? tagToNumber(fromTag) : 0;
   const toTagNumber = toTag ? tagToNumber(toTag) : Number.MAX_SAFE_INTEGER;
 
-  document.getElementById('rel-notes').innerHTML = '';
-  const repoPath = document.getElementById('repo-path').value;
-  const renderMarkdown = document.getElementById('markdown').checked;
+  gebi('rel-notes').innerHTML = '';
+  const repoPath = gebi('repo-path').value;
+  const renderMarkdown = gebi('markdown').checked;
+
   collectReleaseNotes(repoPath, {
     renderMarkdown,
     page: 1,
@@ -66,8 +72,8 @@ function start() {
   });
 }
 
-document.getElementById('select-all').addEventListener('click', () => {
-  const relNotesDiv = document.getElementById('rel-notes');
+gebi('select-all').addEventListener('click', () => {
+  const relNotesDiv = gebi('rel-notes');
   const range = document.createRange();
   range.selectNodeContents(relNotesDiv);
   const selection = window.getSelection();
@@ -75,10 +81,10 @@ document.getElementById('select-all').addEventListener('click', () => {
   selection.addRange(range);
 });
 
-document.getElementById('repo-path').addEventListener('keyup', event => {
+gebi('repo-path').addEventListener('keyup', event => {
   if (event.key === 'Enter') {
     start();
   }
 });
 
-document.getElementById('start').addEventListener('click', start);
+gebi('start').addEventListener('click', start);
