@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home</title>
+    <title>GitHub Release Notes Loader</title>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
       integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
@@ -10,10 +10,11 @@
     ></script>
   </head>
   <body>
-    <h1>Release Notes Loader</h1>
+    <h1>GitHub Release Notes Loader</h1>
+    <p>Load a repository's release notes iteratively.</p>
     <p>
       <label for="owner">GitHub repository path as "owner/repo":</label>
-      <input id="repo-path" />
+      <input id="repo-path" placeholder="actions/checkout" />
     </p>
 
     <p>
@@ -22,11 +23,13 @@
     </p>
     <p>
       <label for="from-tag">From tag:</label>
-      <input type="text" id="from-tag" />
+      <input type="text" id="from-tag" placeholder="v3.0.0" />
+      Optional
     </p>
     <p>
       <label for="to-tag">To tag:</label>
-      <input type="text" id="to-tag" />
+      <input type="text" id="to-tag" placeholder="v4.0.0" />
+      Optional
     </p>
     <p>
       <button id="start">Load</button>
