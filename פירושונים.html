@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google פירושונים Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>חפש ב-Google עם פירושונים</h2>
+    
+    <form id="searchForm" action="https://www.google.com/search" method="GET">
+        <input type="text" id="query" name="q" placeholder="הקלד מונח לחיפוש" required>
+        <button type="submit">חפש</button>
+    </form>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            let input = document.getElementById("query");
+            input.value = input.value + " פירושונים";
+        });
+    </script>
+
+</body>
+</html>
