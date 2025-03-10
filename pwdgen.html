@@ -9,7 +9,7 @@
   <p>
     <button onclick="gen(16, allChars)">Generate (16)</button>
     <button onclick="gen(8, allChars)">Generate (8)</button>
-    <button onclick="gen(16, alnum)">Generate Alphanumeric (16)</button>
+    <button onclick="gen(20, alnum)">Generate Alphanumeric (20)</button>
   </p>
   <p>
     <input type="text" id="password" size="50"></input>
@@ -47,11 +47,11 @@
           }
         } else {
           if (
-          /\d/.test(pwd) &&
-          /[A-Z]/.test(pwd) &&
-          /[a-z]/.test(pwd) &&
-          /[^\w]/.test(pwd))
-          {
+            /\d/.test(pwd) &&
+            /[A-Z]/.test(pwd) &&
+            /[a-z]/.test(pwd) &&
+            /[^\w]/.test(pwd)
+          ) {
             break;
           }
         }
@@ -59,7 +59,6 @@
     
       const e = document.getElementById("password");
       e.value = pwd;
-      e.select();
     }
   </script>
 </body>
