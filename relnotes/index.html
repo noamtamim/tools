@@ -2,6 +2,11 @@
 <html>
   <head>
     <title>GitHub Release Notes Loader</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"
       integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA=="
@@ -13,7 +18,7 @@
     <h1>GitHub Release Notes Loader</h1>
     <p>Load a repository's release notes iteratively.</p>
     <p>
-      <label for="owner">GitHub repository path as "owner/repo":</label>
+      <label for="owner">GitHub repository path as <b>owner/repo</b> or <b>https://github.com/owner/repo</b>:</label>
       <input id="repo-path" placeholder="actions/checkout" />
     </p>
 

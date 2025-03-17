@@ -61,7 +61,7 @@ function start() {
   const toTagNumber = toTag ? tagToNumber(toTag) : Number.MAX_SAFE_INTEGER;
 
   gebi('rel-notes').innerHTML = '';
-  const repoPath = gebi('repo-path').value;
+  const repoPath = gebi('repo-path').value.replace(/^https\:\/\/github.com\//,'');
   const renderMarkdown = gebi('markdown').checked;
 
   collectReleaseNotes(repoPath, {
